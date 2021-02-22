@@ -5,7 +5,9 @@ import Robots from './components/Robots'
 import styles from './App.module.css';
 import ShoppingCart from './components/ShoppingCart'
 
-interface Props { }
+interface Props {
+  username: string
+}
 
 interface State {
   robotGallery: any[],
@@ -16,7 +18,7 @@ const App: React.FC = () => {
   const [count, setCount] = useState<number>(0)
   const [robotGallery, setRobotGallery] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>()
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     document.title = `点击${count}次`
@@ -50,7 +52,7 @@ const App: React.FC = () => {
       }}>Click</button>
       <span>count: {count}</span>
       <ShoppingCart />
-      {(!error || error !== '') && <div>网站出错：{error}</div>}
+      {error !== "" && <div>网站出错：{error}</div>}
       { !loading ? (
         <div className={styles.robotList}>
           {robotGallery.map(r => <Robots id={r.id} email={r.email} name={r.name} />)}
