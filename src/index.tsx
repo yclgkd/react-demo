@@ -4,9 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const defaultContextValue = {
+  username: 'brian'
+}
+
+const appContext = React.createContext(defaultContextValue)
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <appContext.Provider value={defaultContextValue}>
+      <App />
+    </appContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -15,3 +23,5 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+export {appContext}
